@@ -1,17 +1,20 @@
 class Funciones_del_Archivo ():    
     
     def __init__ (self, lista):
-        
-        assert  type(lista) == list, print('Debe ingresar una lista.')
+        #assert  type(lista) =!= list, print('Debe ingresar una lista.')
+        if type(lista) != list: raise ValueError ('El objeto debe ser una lista.')
         for i in lista:
-            assert  type(i) == int ,  print('La lista debe contener números enteros.')
-
+            #assert  type(i) == int ,  print('La lista debe contener números enteros.')
+            if type(i) != int:
+                raise ValueError('La lista debe contener números enteros.')  
 
         self.lista = lista
 
     def es_primo (self):
+        lista_resultado = []
         for numero in self.lista:
-            self.__es_primo(numero)
+            lista_resultado.append(self.__es_primo(numero))
+        return lista_resultado
 
     def  __es_primo (self,numero):
         if (numero != 0 and numero != 1):
@@ -20,12 +23,15 @@ class Funciones_del_Archivo ():
                 if numero % j == 0:
                     divisores += 1
                     if divisores >2:
-                        return print('El número: ' + str(numero) + ' no es primo')
+                        return False 
+                        #print('El número: ' + str(numero) + ' no es primo')
                         break
             if divisores ==2:
-                return print('El número: ' + str(numero) + ' sí es primo')
+                return True 
+                #print('El número: ' + str(numero) + ' sí es primo')
         else:
-            return print('El número: ' + str(numero) + ' no es primo')
+            return False 
+            # print('El número: ' + str(numero) + ' no es primo')
 
     
     def numero_repetido (self):
@@ -50,8 +56,10 @@ class Funciones_del_Archivo ():
             print ('La unidad de destino es incorrecta, ingrese un valor válido: Celsius / Fareheit / Kelvin')
 
         else:
+            lista_resultado = []
             for i in self.lista:
-                self.__convierte_grados(i, origen, destino)
+                lista_resultado.append(self.__convierte_grados(i, origen, destino))
+            return lista_resultado
 
 
     def __convierte_grados (self, temp, origen , destino):
@@ -73,12 +81,18 @@ class Funciones_del_Archivo ():
                 resultado = (temp - 273.15) * 9/5 +32
             elif  destino == 'Celsius':
                 resultado = (temp - 273.15)
+        return resultado        
 
-        print (str(temp) + ' grados ' + origen + ' son equivalentes a: ' + str(round(resultado,2)) + ' grados ' + destino)
+        #print (str(temp) + ' grados ' + origen + ' son equivalentes a: ' + str(round(resultado,2)) + ' grados ' + destino)
 
     def factorial(self):
+        lista_resultado = []
         for i in self.lista:    
-            print ('El factorial de numero: ' + str(i) + ' es: ' + str(self.__factorial(i)))
+            lista_resultado.append(self.__factorial(i))
+        return lista_resultado
+        
+
+            #print ('El factorial de numero: ' + str(i) + ' es: ' + str(self.__factorial(i)))
     
     def __factorial (self,numero): 
         if type (numero) != int:
