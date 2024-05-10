@@ -6,6 +6,7 @@ import datetime
 import os
 import sys
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
 tiempo = datetime.datetime.now()
 #tiempo = datetime.datetime.timestamp(tiempo)
 #tiempo = datetime.datetime.fromtimestamp(tiempo)
@@ -21,7 +22,8 @@ while respuesta != 'SI' and respuesta != 'NO':
         sys.argv.append(False)
 
 justMyCode = True
-file = open('clase09_ej2_mio.csv','w')
+file = open(dir_path + '\\clase09_ej2_mio.csv','a')
+print (file)
 file.write(str(tiempo)+',')
 for n in range(1,4):
     print (str(sys.argv[n]))
